@@ -10,6 +10,7 @@
 ### Python Unit Tests
 
 ## Authors
-
+Josepeh Mariga
+Pius
 ## Acknowledgment
 This project is part of the ALX curriculum 
