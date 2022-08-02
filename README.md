@@ -1,10 +1,10 @@
 # 0x00.AirBnB clone - The console
 
-##Learning Objectives
+## Learning Objectives
 
 
-##Requirements
+## Requirements
 
-#Python Scripts
+# Python Scripts
 
-#Python Unit Tests
+# Python Unit Tests
