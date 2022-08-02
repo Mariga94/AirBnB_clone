@@ -5,6 +5,11 @@
 
 ## Requirements
 
-# Python Scripts
+### Python Scripts
 
-# Python Unit Tests
+### Python Unit Tests
+
+## Authors
+
+## Acknowledgment
+This project is part of the ALX curriculum 
