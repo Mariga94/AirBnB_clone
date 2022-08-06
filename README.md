@@ -11,6 +11,6 @@
 
 ## Authors
 Josepeh Mariga
-Pius
+Pius Mionki
 ## Acknowledgment
 This project is part of the ALX curriculum 
