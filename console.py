@@ -120,7 +120,7 @@ class HBNBCommand(cmd.Cmd):
                 value = type(my_obj.__class__.dict__[arg1[2]])
                 my_obj.__dict__[arg1[2]] = value(arg1[3])
             else:
-                obj.__dict__[arg1[2]] = arg1[3]
+                my_obj.__dict__[arg1[2]] = arg1[3]
 
 
 def parse(arg):
