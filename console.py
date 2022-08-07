@@ -13,12 +13,18 @@ class HBNBCommand(cmd.Cmd):
     """Defines the AirBnB cmd.
     Attributes:
         prompt (str): The command prompt.
-    """    
+    """
     prompt = '(hbnb)'
 
     """Stores all classes to be created """
     __inst_classes = {
             "BaseModel",
+            "City",
+            "User",
+            "Amenity",
+            "State",
+            "Place",
+            "Review",
             }
 
     def do_EOF(self, arg):
@@ -32,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """Creates a new instance of BaseModel"""
         arg1 = parse(arg)
-    
+
         if len(arg1) == 0:
             print("** class name missing **")
         elif arg1[0] not in HBNBCommand.__inst_classes:
@@ -89,10 +95,10 @@ class HBNBCommand(cmd.Cmd):
             elif len(arg1) == 0:
                 my_list.append(value.__str__())
         print(my_list)
-    
+
     def do_update(self, arg):
-        """Updates an instance based on the class name and id
-        by adding or updating attribute"""
+        """Updates an instance based on the class name
+        and id by adding or updating attribute"""
         arg1 = parse(arg)
         my_storage = storage.all()
         if len(arg1) == 0:
@@ -105,7 +111,8 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
         elif len(arg1) == 2:
             print("** attribute name missing **")
-        elif len(arg1) == 3 and "{}.{}".format(arg1[0], arg1[2]) not in my_storage:
+        elif len(arg1) == 3 and "{}.{}".format(
+                arg1[0], arg1[2]) not in my_storage:
             print("** value missing **")
         elif len(arg1) == 4:
             my_obj = my_storage["{}.{}".format(arg1[0], arg1[1])]
@@ -114,7 +121,6 @@ class HBNBCommand(cmd.Cmd):
                 my_obj.__dict__[arg1[2]] = value(arg1[3])
             else:
                 obj.__dict__[arg1[2]] = arg1[3]
-          
 
 
 def parse(arg):
