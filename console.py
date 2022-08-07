@@ -27,6 +27,10 @@ class HBNBCommand(cmd.Cmd):
             "Review",
             }
 
+    def emptyline(self):
+        """Nothing"""
+        pass
+
     def do_EOF(self, arg):
         """End of file"""
         return True
