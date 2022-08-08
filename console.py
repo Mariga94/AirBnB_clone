@@ -126,6 +126,15 @@ class HBNBCommand(cmd.Cmd):
             else:
                 my_obj.__dict__[arg1[2]] = arg1[3]
 
+    def do_count(self, arg):
+        """Counts number of instances"""
+        arg1 = parse(arg)
+        count = 0
+        for obj in storage.all().values():
+            if arg1[0] == obj.__class__.__name__:
+                count += 1
+        print(count)
+
 
 def parse(arg):
     "Convert a series of string to argument list"
