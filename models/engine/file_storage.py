@@ -22,12 +22,18 @@ class FileStorage:
     __file_path = "file.json"
     __objects = {}
 
+    classes = {
+                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
+                    'State': State, 'City': City, 'Amenity': Amenity,
+                    'Review': Review
+                    }
+
     def all(self, cls=None):
         """Returns a dictionay of instatiated __objects"""
         if cls is not None:
             dictionary = {}
             for key, value in self.__objects.items():
-                if cls == value.__class__ or cls == value.__class__.__name__:
+                if cls == type(v):
                     dictionary[key] = value
                 return dictionary
         return self.__objects
@@ -42,18 +48,17 @@ class FileStorage:
         for key in self.__objects:
             dictionary[key] = self.__objects[key].to_dict()
         with open(self.__file_path, "w", encoding="utf-8") as f:
-            json.dump(dictionary, f)
+            json.dump(dictionary, f, indent=4)
 
     def reload(self):
         """Deserializes the JSON file to __objects (only if the
             JSON file (__file_path) exists; otherwise, do nothing.
         """
-
         try:
-            with open(self.__file_path, "r", encoding="utf-8") as jsonfile:
-                for obj in json.load(jsonfile).values():
-                    name = obj["__class__"]
-                    del obj["__class__"]
-                    self.new(exec(name)(**obj))
-        except Exception:
+            dicts = {}
+            with open(FileStorage.__file_path, "r", encoding="utf-8") as f:
+                dicts = json.load(f)
+            for key, value in dicts.items():
+                self.all()[key] = self.classes[value['__class__']](**value)
+        except FileNotFoundError:
             pass
