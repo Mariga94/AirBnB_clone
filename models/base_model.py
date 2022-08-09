@@ -5,7 +5,6 @@ class BaseModel
 import models
 from uuid import uuid4
 from datetime import datetime
-#from models import storage
 
 
 class BaseModel:
@@ -50,5 +49,5 @@ class BaseModel:
         this_dict = self.__dict__.copy()
         this_dict["__class__"] = type(self).__name__
         this_dict["created_at"] = this_dict["created_at"].isoformat()
-        this_dict["updated_at"] = this_dict["updated_at"].isoformat()
+        this_dict["updated_at"] = this_dict["created_at"]
         return this_dict
