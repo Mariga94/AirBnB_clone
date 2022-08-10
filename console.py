@@ -50,6 +50,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg1[0] in HBNBCommand.__inst_classes:
             new = BaseModel()
             new.save()
+            print(new)
 
     def do_show(self, arg):
         """Prints string representation of an instance based
@@ -90,14 +91,15 @@ class HBNBCommand(cmd.Cmd):
         or not on the class name"""
         my_storage = storage.all()
         arg1 = parse(arg)
-        my_list = []
         if len(arg1) > 0 and arg[0] not in HBNBCommand.__inst_classes:
             print("** class doesn't exist **")
-        for value in my_storage.values():
-            if len(arg1) > 0 and arg1[0] == value.__class__.__name__:
-                my_list.append(value.__str__())
-            elif len(arg1) == 0:
-                my_list.append(value.__str__())
+        else:
+            my_list = []
+            for value in my_storage.values():
+                if len(arg1) > 0 and arg1[0] == value.__class__.__name__:
+                    my_list.append(value.__str__())
+                elif len(arg1) == 0:
+                    my_list.append(value.__str__())
         print(my_list)
 
     def do_update(self, arg):
@@ -134,6 +136,22 @@ class HBNBCommand(cmd.Cmd):
             if arg1[0] == obj.__class__.__name__:
                 count += 1
         print(count)
+
+    def do_destroy(self, arg):
+        """Delete a class instance of a given id """
+        arg1 = parse(arg)
+        my_storage = storage.all()
+        if len(arg1) == 0:
+            print("** class name missing **")
+        elif arg1[0] not in HBNBCommand.__inst_classes:
+            print("** class doesn't exist **")
+        elif len(arg1) == 1:
+            print("** instance id missing **")
+        elif "{}.{}".format(arg1[0], arg1[1]) not in my_storage.keys():
+            print("** no instance found **")
+        else:
+            del my_storage["{}.{}".format(arg1[0], arg1[1])]
+            storage.save()
 
 
 def parse(arg):
