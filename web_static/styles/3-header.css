@@ -3,9 +3,12 @@ header {
 	height: 70px;
 	width: 100%;
 	border bottom: 1px #CCCCCC solid;
+	position: relative;
 }
 .logo {
 	background-image: url("/images/logo.png");
 	margin-left: 20px;
 	height: inherit;
+	display: flex;
+	align-items: center;
 }
