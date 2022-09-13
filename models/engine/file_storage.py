@@ -28,14 +28,8 @@ class FileStorage:
                     'Review': Review
                     }
 
-    def all(self, cls=None):
+    def all(self):
         """Returns a dictionay of instatiated __objects"""
-        if cls is not None:
-            dictionary = {}
-            for key, value in self.__objects.items():
-                if cls == type(v):
-                    dictionary[key] = value
-                return dictionary
         return self.__objects
 
     def new(self, obj):
